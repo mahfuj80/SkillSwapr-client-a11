@@ -91,24 +91,24 @@ const Nav = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                  <img src={user?.photoURL} alt="Profile_Image" />
                 </div>
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">
-                    Profile
+                  <Link to={'/profile'} className="justify-between">
+                    {user?.displayName}
                     <span className="badge">New</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <Link to={'/settings'}>Settings</Link>
                 </li>
                 <li>
-                  <a onClick={handleLogOut}>Logout</a>
+                  {user && <button onClick={handleLogOut}>Log Out</button>}
                 </li>
               </ul>
             </div>

@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
+import errorImage from '../../assets/404.gif';
 
 const Error = () => {
   return (
     <div>
-      <div className="h-[100vh] w-[100vw] flex items-center justify-center bg-slate-100">
+      <div className="h-full py-10 w-[100vw] flex items-center justify-center bg-slate-100">
         <div className="text-center w-fit mx-auto bg-[#13192a] p-10 rounded-lg space-y-3">
-          <h2 className="text-7xl font-bold text-white">404</h2>
+          <img
+            className="h-[300px] w-full"
+            src={errorImage}
+            alt="Error_Image"
+          />
           <h3 className="text-white text-4xl font-bold">
             Something Went Wrong!!!
           </h3>
