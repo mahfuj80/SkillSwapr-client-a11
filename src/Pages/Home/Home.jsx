@@ -1,12 +1,13 @@
 import About from './About';
 import Faq from './Faq/Faq';
+import Jobs from './Jobs/Jobs';
 import Slider from './Slider';
 
 const Home = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <Slider></Slider>
-      <h1 className="h-32">This is home</h1>
+      <Jobs></Jobs>
       <About></About>
       <Faq></Faq>
     </div>

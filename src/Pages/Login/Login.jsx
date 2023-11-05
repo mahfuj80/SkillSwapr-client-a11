@@ -55,8 +55,8 @@ const Login = () => {
       });
   };
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200 lg:py-20 py-10">
+    <div className="container mx-auto">
+      <div className="hero min-h-screen bg-base-100 lg:py-20 py-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <img className="w-fit mx-auto" src={logo} alt="logo" />
