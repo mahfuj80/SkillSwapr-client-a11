@@ -4,10 +4,10 @@ import errorImage from '../../assets/404.gif';
 const Error = () => {
   return (
     <div>
-      <div className="h-full py-10 w-[100vw] flex items-center justify-center bg-slate-100">
+      <div className="h-full py-10 w-full flex items-center justify-center bg-slate-100">
         <div className="text-center w-fit mx-auto bg-[#13192a] p-10 rounded-lg space-y-3">
           <img
-            className="h-[300px] w-full"
+            className="h-[300px] w-full rounded-lg"
             src={errorImage}
             alt="Error_Image"
           />

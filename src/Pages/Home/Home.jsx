@@ -1,5 +1,5 @@
 import About from './About';
-import Faq from './Faq';
+import Faq from './Faq/Faq';
 import Slider from './Slider';
 
 const Home = () => {
