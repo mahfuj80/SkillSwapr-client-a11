@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         element: <MyBids></MyBids>,
       },
       {
-        path: '/my-posted-jobs/:email',
+        path: '/my-posted-jobs',
         element: <MyPostedJobs></MyPostedJobs>,
       },
       {

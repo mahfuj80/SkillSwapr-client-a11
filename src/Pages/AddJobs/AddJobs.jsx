@@ -41,7 +41,7 @@ const AddJobs = () => {
             icon: 'success',
             confirmButtonText: 'Ok',
           });
-          navigate(`/my-posted-jobs/${user?.email}`);
+          navigate('/my-posted-jobs');
         }
       })
       .then((error) => {
