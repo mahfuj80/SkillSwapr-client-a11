@@ -1,8 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const JobDetails = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   const id = useParams();
   // console.log(id.id);
   const axios = useAxiosSecure();
@@ -21,14 +26,47 @@ const JobDetails = () => {
   });
 
   // console.log(jobDetails);
-
   if (isLoading) {
     return <span>Loading...</span>;
   }
-
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+
+  const handleModalSubmit = (e) => {
+    e.preventDefault();
+    const price = e.target.price.value;
+    const deadline = e.target.deadline.value;
+    const buyerEmail = e.target.buyerEmail.value;
+    const biddersEmail = e.target.biddersEmail.value;
+    const bidedJob = {
+      name: jobDetails?.data?.name,
+      buyerEmail,
+      biddersEmail,
+      jobTitle: jobDetails?.data?.jobTitle,
+      buyerDeadline: jobDetails?.data?.deadline,
+      bidderDeadline: deadline,
+      buyerPhotoUrl: jobDetails?.data?.photoUrl,
+      biddersPhotoUrl: user?.photoUrl,
+      category: jobDetails?.data?.category,
+      buyerMinimumPrice: jobDetails?.data?.minimumPrice,
+      buyerMaximumPrice: jobDetails?.data?.maximumPrice,
+      biddersPrice: parseInt(price),
+    };
+
+    axios
+      .post('/bidedJob', bidedJob)
+      .then((response) => {
+        console.log(response?.data);
+        // Logged out
+        Swal.fire('Success', 'Bid Success', 'success');
+        navigate('/my-bids/:email');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  console.log(user);
   console.log(jobDetails.data);
   return (
     <div>
@@ -57,10 +95,80 @@ const JobDetails = () => {
               <span>{jobDetails?.data?.maximumPrice}$</span>
             </p>
             <p className="py-6">{jobDetails?.data?.description}</p>
-            <button className="btn btn-primary">Place Your Bid</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => document.getElementById('my_modal_3').showModal()}
+            >
+              Place Your Bid
+            </button>
           </div>
         </div>
       </div>
+
+      {/* modal */}
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <div method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              onClick={() => document.getElementById('my_modal_3').close()}
+            >
+              ✕
+            </button>
+          </div>
+          <form className="w-11/12 text-center" onSubmit={handleModalSubmit}>
+            <label className="label ml-[12%]">
+              <span className="label-text">Price</span>
+            </label>
+            <input
+              required
+              name="price"
+              type="number"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+            <label className="label ml-[12%]">
+              <span className="label-text">Dead Line?</span>
+            </label>
+            <input
+              required
+              name="deadline"
+              type="date"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+            <label className="label ml-[12%]">
+              <span className="label-text">Your Email</span>
+            </label>
+            <input
+              defaultValue={user?.email}
+              disabled
+              name="biddersEmail"
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+            <label className="label ml-[12%]">
+              <span className="label-text">Buyer Email</span>
+            </label>
+            <input
+              defaultValue={jobDetails?.data?.email}
+              disabled
+              name="buyerEmail"
+              type="text"
+              placeholder="Type here"
+              className="input input-bordered w-full max-w-xs"
+            />
+            <input
+              disabled={user?.email === jobDetails?.data?.email}
+              className=" block mx-auto mt-5 btn btn-primary"
+              type="submit"
+              value="Bid on the project"
+            />
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };
