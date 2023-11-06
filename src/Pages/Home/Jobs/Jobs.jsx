@@ -93,7 +93,9 @@ const Jobs = () => {
                   </p>
                   <p>{job?.description.slice(0, 59)}...</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Bid Now</button>
+                    <Link to={`/job-details/${job?._id}`}>
+                      <button className="btn btn-primary">Bid Now</button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -119,7 +121,9 @@ const Jobs = () => {
                   </p>
                   <p>{job?.description.slice(0, 59)}...</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Bid Now</button>
+                    <Link to={`/job-details/${job?._id}`}>
+                      <button className="btn btn-primary">Bid Now</button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -145,7 +149,9 @@ const Jobs = () => {
                   </p>
                   <p>{job?.description.slice(0, 59)}...</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Bid Now</button>
+                    <Link to={`/job-details/${job?._id}`}>
+                      <button className="btn btn-primary">Bid Now</button>
+                    </Link>
                   </div>
                 </div>
               </div>
