@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         element: <Registration></Registration>,
       },
       {
-        path: '/add-job/:email',
+        path: '/add-job',
         element: <AddJobs></AddJobs>,
       },
       {

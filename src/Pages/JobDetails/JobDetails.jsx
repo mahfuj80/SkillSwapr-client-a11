@@ -60,7 +60,7 @@ const JobDetails = () => {
         console.log(response?.data);
         // Logged out
         Swal.fire('Success', 'Bid Success', 'success');
-        navigate('/my-bids/:email');
+        navigate(`/my-bids/${user?.email}`);
       })
       .catch((error) => {
         console.log(error);
@@ -153,7 +153,7 @@ const JobDetails = () => {
               <span className="label-text">Buyer Email</span>
             </label>
             <input
-              defaultValue={jobDetails?.data?.email}
+              defaultValue={jobDetails.data?.email}
               disabled
               name="buyerEmail"
               type="text"

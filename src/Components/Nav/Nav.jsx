@@ -18,7 +18,7 @@ const Nav = () => {
         <NavLink to={'/'}>Home</NavLink>
       </li>
       <li className="font-bold">
-        <NavLink to={`/add-job/${user?.email}`}>Add Job</NavLink>
+        <NavLink to={'/add-job'}>Add Job</NavLink>
       </li>
       <li className="font-bold">
         <NavLink to={`/my-bids/${user?.email}`}>My Bids</NavLink>
