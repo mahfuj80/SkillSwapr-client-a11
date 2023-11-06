@@ -1,17 +1,35 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { useQuery } from '@tanstack/react-query';
 
 const Jobs = () => {
-  const [allJobs, setAllJobs] = useState([]);
+  // const [allJobs, setAllJobs] = useState([]);
 
   //   get all jobs by filter and conditions
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/jobs')
-      .then((res) => setAllJobs(res?.data));
-  }, []);
+  const {
+    isPending,
+    isError,
+    data: allJobs,
+    error,
+  } = useQuery({
+    queryKey: ['todos'],
+    queryFn: () => axios.get('http://localhost:5000/jobs'),
+  });
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:5000/jobs')
+  //     .then((res) => setAllJobs(res?.data));
+  // }, []);
   console.log(allJobs[0]);
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
