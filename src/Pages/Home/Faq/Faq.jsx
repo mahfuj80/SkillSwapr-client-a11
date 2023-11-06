@@ -14,8 +14,9 @@ const Faq = () => {
                 Any Questions? Look Here
               </h2>
               <p className="text-base text-body-color">
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+                If you have any questions or need assistance, this is the place
+                to find answers. For inquiries or any clarifications, this is
+                your go-to resource.
               </p>
             </div>
           </div>
