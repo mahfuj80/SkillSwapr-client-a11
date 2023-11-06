@@ -4,43 +4,16 @@ import 'react-tabs/style/react-tabs.css';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Jobs = () => {
   const axios = useAxiosSecure();
   const [allJobs, setAllJobs] = useState({});
   const [category, setCategory] = useState('');
 
-  const getJobs = async () => {
-    const res = await axios.get(`/jobs?category=${category}`, {
-      withCredentials: true,
-    });
-    // console.log(res.data);
-    setAllJobs(res);
-  };
-
-  //   get all jobs by filter and conditions
-  // const {
-  //   isLoading,
-  //   isError,
-  //   data: allJobs,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ['jobs', category],
-  //   queryFn: getJobs,
-  // });
-
-  // if (isLoading) {
-  //   return <span>Loading...</span>;
-  // }
-
-  // if (isError) {
-  //   return <span>Error: {error.message}</span>;
-  // }
-
   useEffect(() => {
-    getJobs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [category]);
+    axios.get(`/jobs?category=${category}`).then((res) => setAllJobs(res));
+  }, [category, axios]);
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <div className="-mx-4 flex flex-wrap">
@@ -62,13 +35,13 @@ const Jobs = () => {
       <Tabs>
         <TabList>
           <Tab onClick={() => setCategory('')}>All Jobs</Tab>
-          <Tab onClick={() => setCategory('web development')}>
+          <Tab onClick={() => setCategory('web-development')}>
             Web Development
           </Tab>
-          <Tab onClick={() => setCategory('graphics design')}>
+          <Tab onClick={() => setCategory('graphics-design')}>
             Graphics Design
           </Tab>
-          <Tab onClick={() => setCategory('digital marketing')}>
+          <Tab onClick={() => setCategory('digital-marketing')}>
             Digital Marketing
           </Tab>
         </TabList>
@@ -92,7 +65,9 @@ const Jobs = () => {
                   </p>
                   <p>{job?.description.slice(0, 59)}...</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Bid Now</button>
+                    <Link to={`/job-details/${job?._id}`}>
+                      <button className="btn btn-primary">Bid Now</button>
+                    </Link>
                   </div>
                 </div>
               </div>
