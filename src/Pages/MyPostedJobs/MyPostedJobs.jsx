@@ -30,13 +30,30 @@ const MyPostedJobs = () => {
     onSuccess: () => {
       Swal.fire({
         title: 'Success!',
-        text: 'Product Successfully Added',
+        text: 'Product Successfully Deleted',
         icon: 'success',
         confirmButtonText: 'Ok',
       });
       queryClient.invalidateQueries({ queryKey: ['myJobs'] });
     },
   });
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        mutate(id);
+      }
+    });
+  };
+
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -77,7 +94,8 @@ const MyPostedJobs = () => {
                   <button className="btn btn-primary">Update</button>
                 </Link>
                 <button
-                  onClick={() => mutate(job?._id)}
+                  // onClick={() => mutate(job?._id)}
+                  onClick={() => handleDelete(job?._id)}
                   className="btn btn-danger"
                 >
                   Delete
