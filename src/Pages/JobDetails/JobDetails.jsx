@@ -9,7 +9,6 @@ const JobDetails = () => {
   const navigate = useNavigate();
 
   const id = useParams();
-  // console.log(id.id);
   const axios = useAxiosSecure();
   const getJobDetails = async () => {
     const jobDetails = await axios.get(`/jobDetails/${id.id}`);
@@ -25,7 +24,6 @@ const JobDetails = () => {
     queryFn: getJobDetails,
   });
 
-  // console.log(jobDetails);
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -58,7 +56,6 @@ const JobDetails = () => {
       .post('/bidedJob', bidedJob)
       .then((response) => {
         console.log(response?.data);
-        // Logged out
         Swal.fire('Success', 'Bid Success', 'success');
         navigate(`/my-bids/${user?.email}`);
       })
@@ -66,8 +63,6 @@ const JobDetails = () => {
         console.log(error);
       });
   };
-  console.log(user);
-  console.log(jobDetails.data);
   return (
     <div>
       <div className="hero py-10 md:py-16 container mx-auto bg-base-300 rounded-lg">

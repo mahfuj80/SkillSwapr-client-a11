@@ -33,7 +33,6 @@ const AddJobs = () => {
     axios
       .post('/jobs', jobInfo)
       .then((res) => {
-        console.log(res.data);
         if (res.data.acknowledged) {
           Swal.fire({
             title: 'Success!',
