@@ -56,7 +56,7 @@ const JobDetails = () => {
       buyerDeadline: jobDetails?.data?.deadline,
       bidderDeadline: deadline,
       buyerPhotoUrl: jobDetails?.data?.photoUrl,
-      biddersPhotoUrl: user?.photoUrl,
+      biddersPhotoUrl: user?.photoURL,
       category: jobDetails?.data?.category,
       buyerMinimumPrice: jobDetails?.data?.minimumPrice,
       buyerMaximumPrice: jobDetails?.data?.maximumPrice,
@@ -74,6 +74,7 @@ const JobDetails = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <div className="hero py-10 md:py-16 container mx-auto bg-base-300 rounded-lg">

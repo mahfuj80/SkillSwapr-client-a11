@@ -29,6 +29,7 @@ const BidRequests = () => {
   if (isLoading) {
     return (
       <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        Loading... <br />
         <span className="loading loading-dots loading-xl"></span>
         <span className="loading loading-dots loading-xl"></span>
         <span className="loading loading-dots loading-xl"></span>
@@ -51,10 +52,10 @@ const BidRequests = () => {
         <div className="w-full px-4">
           <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
             <span className="mb-2 block text-lg font-semibold text-primary">
-              Bided Jobs
+              Requested Jobs
             </span>
             <h2 className="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
-              Jobs That You Bid You will find here.
+              Your Jobs That People Bid You will find here.
             </h2>
           </div>
         </div>
@@ -91,15 +92,15 @@ const BidRequests = () => {
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
                       <img
-                        src={job?.buyerPhotoUrl}
+                        src={job?.biddersPhotoUrl}
                         alt="Profile Picture Avatar"
                       />
                     </div>
                   </div>
                 </td>
                 <td>{job?.jobTitle}</td>
-                <td>{job?.buyerEmail}</td>
-                <td>{job?.buyerDeadline}</td>
+                <td>{job?.biddersEmail}</td>
+                <td>{job?.bidderDeadline}</td>
                 <td>
                   {job?.status
                     ? job?.status === 'accepted'

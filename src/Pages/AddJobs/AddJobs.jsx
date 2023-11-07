@@ -7,6 +7,7 @@ const AddJobs = () => {
   const navigate = useNavigate();
   const axios = useAxiosSecure();
   const { user } = useAuth();
+  console.log(user);
   const handleAddJob = (e) => {
     e.preventDefault();
 
@@ -27,9 +28,8 @@ const AddJobs = () => {
       category,
       minimumPrice: parseInt(minimumPrice),
       maximumPrice: parseInt(maximumPrice),
-      photoUrl: user?.photoUrl,
+      photoUrl: user?.photoURL,
     };
-
     axios
       .post('/jobs', jobInfo)
       .then((res) => {
@@ -63,7 +63,7 @@ const AddJobs = () => {
             <div className="w-full px-4 md:w-1/2 lg:w-1/2">
               <div className="mb-12">
                 <label className="mb-3 block text-base font-medium text-black ">
-                  Your Name
+                  Your Nic Name
                 </label>
                 <input
                   required

@@ -43,6 +43,7 @@ const Jobs = () => {
   //     </div>
   //   );
   // }
+
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <div className="-mx-4 flex flex-wrap">
@@ -76,120 +77,154 @@ const Jobs = () => {
         </TabList>
 
         <TabPanel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
-            {allJobs?.data?.map((job) => (
-              <div
-                key={job?._id}
-                className="card bg-base-100 shadow-xl border-gray-300 border"
-              >
-                <div className="card-body">
-                  <h2 className="card-title">{job?.jobTitle}</h2>
-                  <p>
-                    <span className="font-semibold">Dead Line:</span>{' '}
-                    <span className="text-red-400">{job?.deadline}</span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">Price Range:</span>{' '}
-                    {job?.minimumPrice}$ to {job?.maximumPrice}$
-                  </p>
-                  <p>{job?.description.slice(0, 59)}...</p>
-                  <div className="card-actions justify-end">
-                    <Link to={`/job-details/${job?._id}`}>
-                      <button className="btn btn-primary">Bid Now</button>
-                    </Link>
+          {allJobs?.data?.length < 1 ? (
+            <div className="w-fit mx-auto text-4xl text-center font-bold py-32 ">
+              No Jobs Found
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
+              {allJobs?.data?.map((job) => (
+                <div
+                  key={job?._id}
+                  className="card bg-base-100 shadow-xl border-gray-300 border"
+                >
+                  <div className="card-body">
+                    <h2 className="card-title">{job?.jobTitle}</h2>
+                    <p>
+                      <span className="font-semibold">Dead Line:</span>{' '}
+                      <span className="text-red-400">{job?.deadline}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold">Price Range:</span>{' '}
+                      {job?.minimumPrice}$ to {job?.maximumPrice}$
+                    </p>
+                    <p>{job?.description.slice(0, 59)}...</p>
+                    <div className="card-actions justify-end">
+                      <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn btn-primary">Bid Now</button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
-            {allJobs?.data?.map((job) => (
-              <div
-                key={job?._id}
-                className="card bg-base-100 shadow-xl border-gray-300 border"
-              >
-                <div className="card-body">
-                  <h2 className="card-title">{job?.jobTitle}</h2>
-                  <p>
-                    <span className="font-semibold">Dead Line:</span>{' '}
-                    <span className="text-red-400">{job?.deadline}</span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">Price Range:</span>{' '}
-                    {job?.minimumPrice}$ to {job?.maximumPrice}$
-                  </p>
-                  <p>{job?.description.slice(0, 59)}...</p>
-                  <div className="card-actions justify-end">
-                    <Link to={`/job-details/${job?._id}`}>
-                      <button className="btn btn-primary">Bid Now</button>
-                    </Link>
+          {allJobs?.data?.length < 1 ? (
+            <div className="w-fit mx-auto text-4xl text-center font-bold py-32 ">
+              No Jobs Found
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
+              {allJobs?.data?.map((job) => (
+                <div
+                  key={job?._id}
+                  className="card bg-base-100 shadow-xl border-gray-300 border"
+                >
+                  <div className="card-body">
+                    <h2 className="card-title">{job?.jobTitle}</h2>
+                    <p>
+                      <span className="font-semibold">Dead Line:</span>{' '}
+                      <span className="text-red-400">{job?.deadline}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold">Price Range:</span>{' '}
+                      {job?.minimumPrice}$ to {job?.maximumPrice}$
+                    </p>
+                    <p>{job?.description.slice(0, 59)}...</p>
+                    <div className="card-actions justify-end">
+                      <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn btn-primary">Bid Now</button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
-            {allJobs?.data?.map((job) => (
-              <div
-                key={job?._id}
-                className="card bg-base-100 shadow-xl border-gray-300 border"
-              >
-                <div className="card-body">
-                  <h2 className="card-title">{job?.jobTitle}</h2>
-                  <p>
-                    <span className="font-semibold">Dead Line:</span>{' '}
-                    <span className="text-red-400">{job?.deadline}</span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">Price Range:</span>{' '}
-                    {job?.minimumPrice}$ to {job?.maximumPrice}$
-                  </p>
-                  <p>{job?.description.slice(0, 59)}...</p>
-                  <div className="card-actions justify-end">
-                    <Link to={`/job-details/${job?._id}`}>
-                      <button className="btn btn-primary">Bid Now</button>
-                    </Link>
+          {allJobs?.data?.length < 1 ? (
+            <div className="w-fit mx-auto text-4xl text-center font-bold py-32 ">
+              No Jobs Found
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
+              {allJobs?.data?.map((job) => (
+                <div
+                  key={job?._id}
+                  className="card bg-base-100 shadow-xl border-gray-300 border"
+                >
+                  <div className="card-body">
+                    <h2 className="card-title">{job?.jobTitle}</h2>
+                    <p>
+                      <span className="font-semibold">Dead Line:</span>{' '}
+                      <span className="text-red-400">{job?.deadline}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold">Price Range:</span>{' '}
+                      {job?.minimumPrice}$ to {job?.maximumPrice}$
+                    </p>
+                    <p>{job?.description.slice(0, 59)}...</p>
+                    <div className="card-actions justify-end">
+                      <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn btn-primary">Bid Now</button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
-            {allJobs?.data?.map((job) => (
-              <div
-                key={job?._id}
-                className="card bg-base-100 shadow-xl border-gray-300 border"
-              >
-                <div className="card-body">
-                  <h2 className="card-title">{job?.jobTitle}</h2>
-                  <p>
-                    <span className="font-semibold">Dead Line:</span>{' '}
-                    <span className="text-red-400">{job?.deadline}</span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">Price Range:</span>{' '}
-                    {job?.minimumPrice}$ to {job?.maximumPrice}$
-                  </p>
-                  <p>{job?.description.slice(0, 59)}...</p>
-                  <div className="card-actions justify-end">
-                    <Link to={`/job-details/${job?._id}`}>
-                      <button className="btn btn-primary">Bid Now</button>
-                    </Link>
+          {allJobs?.data?.length < 1 ? (
+            <div className="w-fit mx-auto text-4xl text-center font-bold py-32 ">
+              No Jobs Found
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
+              {allJobs?.data?.map((job) => (
+                <div
+                  key={job?._id}
+                  className="card bg-base-100 shadow-xl border-gray-300 border"
+                >
+                  <div className="card-body">
+                    <h2 className="card-title">{job?.jobTitle}</h2>
+                    <p>
+                      <span className="font-semibold">Dead Line:</span>{' '}
+                      <span className="text-red-400">{job?.deadline}</span>
+                    </p>
+                    <p>
+                      <span className="font-semibold">Price Range:</span>{' '}
+                      {job?.minimumPrice}$ to {job?.maximumPrice}$
+                    </p>
+                    <p>{job?.description.slice(0, 59)}...</p>
+                    <div className="card-actions justify-end">
+                      <Link to={`/job-details/${job?._id}`}>
+                        <button className="btn btn-primary">Bid Now</button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </TabPanel>
       </Tabs>
     </section>
   );
 };
+
+// if (allJobs?.data?.length < 1) {
+//   return (
+//     <>
+//       <div className="w-fit mx-auto text-4xl text-center font-bold py-32 ">
+//         No Jobs Found
+//       </div>
+//     </>
+//   );
+// }
 
 export default Jobs;

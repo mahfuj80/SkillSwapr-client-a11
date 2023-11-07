@@ -23,37 +23,37 @@ const Registration = () => {
     const password = form.get('password');
 
     // Check password lengthfir
-    if (password.length < 6) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Password should be at least 6 characters long.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-      return;
-    }
+    // if (password.length < 6) {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: 'Password should be at least 6 characters long.',
+    //     icon: 'error',
+    //     confirmButtonText: 'Ok',
+    //   });
+    //   return;
+    // }
 
-    // Check for capital letter
-    if (!/[A-Z]/.test(password)) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Password should contain at least one capital letter.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-      return;
-    }
+    // // Check for capital letter
+    // if (!/[A-Z]/.test(password)) {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: 'Password should contain at least one capital letter.',
+    //     icon: 'error',
+    //     confirmButtonText: 'Ok',
+    //   });
+    //   return;
+    // }
 
-    // Check for special character
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Password should contain at least one special character.',
-        icon: 'error',
-        confirmButtonText: 'Ok',
-      });
-      return;
-    }
+    // // Check for special character
+    // if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    //   Swal.fire({
+    //     title: 'Error!',
+    //     text: 'Password should contain at least one special character.',
+    //     icon: 'error',
+    //     confirmButtonText: 'Ok',
+    //   });
+    //   return;
+    // }
 
     createUser(email, password)
       .then(() => {
