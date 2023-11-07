@@ -7,17 +7,16 @@ const MyBids = () => {
   const { user } = useAuth();
   const {
     isError,
-    error,
     isLoading,
     data: myBids,
   } = useQuery({
-    queryKey: ['myJobs', user],
+    queryKey: ['myBids', user],
     queryFn: async () => {
-      const res = await axios.get(`/jobs/${user.email}`);
+      const res = await axios.get(`/bidedJobs/email@eee.com`);
       return res;
     },
   });
-
+  // console.log(myBids);
   if (!user?.email) {
     return (
       <div className="w-fit text-center mx-auto text-4xl font-bold py-36 ">
@@ -38,7 +37,7 @@ const MyBids = () => {
   if (isError) {
     return (
       <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
-        Error: {error.message}
+        Error: {'Something went wrong'}
       </div>
     );
   }
@@ -68,6 +67,7 @@ const MyBids = () => {
                 </label>
               </th>
               {/* <th>Profile Image</th> */}
+              <th>Profile Image</th>
               <th>Job Title</th>
               <th>Email</th>
               <th>Dead Line</th>
@@ -76,26 +76,51 @@ const MyBids = () => {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr className="hover:bg-gray-100">
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <td>Web Developer</td>
-              <td>email@eee.com</td>
-              <td>12/10/2023</td>
-              <td>Active</td>
-              <th>
-                <button className="btn btn-ghost btn-sm">Complete</button>
-              </th>
-            </tr>
+            {/* row */}
+            {myBids?.data?.map((job) => (
+              <tr key={job?._id} className="hover:bg-gray-100">
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
+                </th>
+                <td>
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-12 h-12">
+                      <img
+                        src={job?.buyerPhotoUrl}
+                        alt="Profile Picture Avatar"
+                      />
+                    </div>
+                  </div>
+                </td>
+                <td>{job?.jobTitle}</td>
+                <td>{job?.buyerEmail}</td>
+                <td>{job?.buyerDeadline}</td>
+                <td>
+                  {job?.status
+                    ? job?.status === 'accepted'
+                      ? 'In Progress'
+                      : job?.status === 'canceled'
+                      ? 'Canceled'
+                      : 'Pending'
+                    : 'Pending'}
+                </td>
+                <th>
+                  {job?.status === 'accepted' ? (
+                    <button className="btn btn-ghost btn-sm">Complete</button>
+                  ) : (
+                    ''
+                  )}
+                </th>
+              </tr>
+            ))}
           </tbody>
           {/* foot */}
           <tfoot>
             <tr>
               <th></th>
+              <th>Profile Image</th>
               <th>Job Title</th>
               <th>Email</th>
               <th>Dead Line</th>

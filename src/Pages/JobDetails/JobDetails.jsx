@@ -57,7 +57,7 @@ const JobDetails = () => {
       .then((response) => {
         console.log(response?.data);
         Swal.fire('Success', 'Bid Success', 'success');
-        navigate(`/my-bids/${user?.email}`);
+        navigate('/my-bids');
       })
       .catch((error) => {
         console.log(error);
@@ -71,7 +71,7 @@ const JobDetails = () => {
             <h1 className="text-5xl flex gap-4 items-center font-bold">
               <div className="avatar">
                 <div className="w-24 mask mask-hexagon">
-                  <img src={jobDetails?.data?.photoUrl} />
+                  <img src={jobDetails?.data?.photoUrl} alt="image" />
                 </div>
               </div>
               {jobDetails?.data?.name}
@@ -144,7 +144,7 @@ const JobDetails = () => {
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />
-            <label className="label ml-[12%]">
+            <label className="label ml-[8%] md:ml-[12%]">
               <span className="label-text">Buyer Email</span>
             </label>
             <input
