@@ -2,18 +2,22 @@ import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const MyPostedJobs = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
-  const email = user?.email;
 
   const queryClient = useQueryClient();
-
-  const { data: myJobs } = useQuery({
-    queryKey: ['myJobs'],
+  const {
+    isError,
+    error,
+    isLoading,
+    data: myJobs,
+  } = useQuery({
+    queryKey: ['myJobs', user],
     queryFn: async () => {
-      const res = await axios.get(`/jobs/${email}`);
+      const res = await axios.get(`/jobs/${user.email}`);
       return res;
     },
   });
@@ -21,7 +25,7 @@ const MyPostedJobs = () => {
   const { mutate } = useMutation({
     mutationKey: ['myJobs'],
     mutationFn: (id) => {
-      return axios.delete(`/jobs/${id}`);
+      return axios.delete(`/job/${id}`);
     },
     onSuccess: () => {
       Swal.fire({
@@ -33,7 +37,13 @@ const MyPostedJobs = () => {
       queryClient.invalidateQueries({ queryKey: ['myJobs'] });
     },
   });
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <div className="-mx-4 flex flex-wrap">
@@ -63,7 +73,9 @@ const MyPostedJobs = () => {
               </p>
               <p>{job?.description.slice(0, 59)}...</p>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">Update</button>
+                <Link to={`/updateJob/${job?._id}`}>
+                  <button className="btn btn-primary">Update</button>
+                </Link>
                 <button
                   onClick={() => mutate(job?._id)}
                   className="btn btn-danger"

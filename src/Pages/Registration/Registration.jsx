@@ -22,7 +22,7 @@ const Registration = () => {
     const email = form.get('email');
     const password = form.get('password');
 
-    // Check password length
+    // Check password lengthfir
     if (password.length < 6) {
       Swal.fire({
         title: 'Error!',
