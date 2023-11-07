@@ -21,13 +21,13 @@ const Nav = () => {
         <NavLink to={'/add-job'}>Add Job</NavLink>
       </li>
       <li className="font-bold">
-        <NavLink to={`/my-bids/${user?.email}`}>My Bids</NavLink>
+        <NavLink to={`/my-bids`}>My Bids</NavLink>
       </li>
       <li className="font-bold">
         <NavLink to={'/my-posted-jobs'}>My Posted Job</NavLink>
       </li>
       <li className="font-bold">
-        <NavLink to={`/bid-requests/${user?.email}`}>Bid Requests</NavLink>
+        <NavLink to={`/bid-requests`}>Bid Requests</NavLink>
       </li>
     </>
   );

@@ -22,6 +22,9 @@ const MyPostedJobs = () => {
     },
   });
 
+  // console.log(myJobs);
+  // console.log(user?.email);
+
   const { mutate } = useMutation({
     mutationKey: ['myJobs'],
     mutationFn: (id) => {
@@ -54,12 +57,29 @@ const MyPostedJobs = () => {
     });
   };
 
+  if (!user?.email) {
+    return (
+      <div className="w-fit text-center mx-auto text-4xl font-bold py-36 ">
+        Add Your Email First <br />
+        Otherwise You will get error
+      </div>
+    );
+  }
+
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        Loading...
+      </div>
+    );
   }
 
   if (isError) {
-    return <span>Error: {error.message}</span>;
+    return (
+      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        Error: {error.message}
+      </div>
+    );
   }
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
