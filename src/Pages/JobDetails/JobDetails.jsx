@@ -18,17 +18,28 @@ const JobDetails = () => {
     isLoading,
     isError,
     data: jobDetails,
-    error,
   } = useQuery({
     queryKey: ['jobDetails'],
     queryFn: getJobDetails,
   });
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return (
+      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        Loading... <br />
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+      </div>
+    );
   }
   if (isError) {
-    return <span>Error: {error.message}</span>;
+    return (
+      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        Error: {'Something went wrong'}
+      </div>
+    );
   }
 
   const handleModalSubmit = (e) => {

@@ -1,19 +1,48 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-// import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+// import { useQuery } from '@tanstack/react-query';
 
 const Jobs = () => {
   const axios = useAxiosSecure();
   const [allJobs, setAllJobs] = useState({});
   const [category, setCategory] = useState('');
 
+  // const {
+  //   isLoading,
+  //   isError,
+  //   data: allJobs,
+  // } = useQuery({
+  //   queryKey: ['jobDetails', category, axios],
+  //   queryFn: async () => {
+  //     const res = await axios.get(`/jobs?category=${category}`);
+  //     return res;
+  //   },
+  // });
   useEffect(() => {
     axios.get(`/jobs?category=${category}`).then((res) => setAllJobs(res));
   }, [category, axios]);
+  // if (isLoading) {
+  //   return (
+  //     <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+  //       Loading... <br />
+  //       <span className="loading loading-dots loading-xl"></span>
+  //       <span className="loading loading-dots loading-xl"></span>
+  //       <span className="loading loading-dots loading-xl"></span>
+  //       <span className="loading loading-dots loading-xl"></span>
+  //     </div>
+  //   );
+  // }
+  // if (isError) {
+  //   return (
+  //     <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+  //       Error: {'Something went wrong'}
+  //     </div>
+  //   );
+  // }
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <div className="-mx-4 flex flex-wrap">

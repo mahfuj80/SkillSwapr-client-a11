@@ -10,6 +10,7 @@ import MyBids from '../Pages/MyBids/MyBids';
 import MyPostedJobs from '../Pages/MyPostedJobs/MyPostedJobs';
 import BidRequests from '../Pages/BidRequests/BidRequests';
 import UpdateJob from '../Pages/UpdateJob/UpdateJob';
+import PrivetRoutes from './PrivetRoutes';
 
 const router = createBrowserRouter([
   {
@@ -31,27 +32,51 @@ const router = createBrowserRouter([
       },
       {
         path: '/add-job',
-        element: <AddJobs></AddJobs>,
+        element: (
+          <PrivetRoutes>
+            <AddJobs></AddJobs>
+          </PrivetRoutes>
+        ),
       },
       {
         path: '/updateJob/:id',
-        element: <UpdateJob></UpdateJob>,
+        element: (
+          <PrivetRoutes>
+            <UpdateJob></UpdateJob>
+          </PrivetRoutes>
+        ),
       },
       {
         path: '/job-details/:id',
-        element: <JobDetails></JobDetails>,
+        element: (
+          <PrivetRoutes>
+            <JobDetails></JobDetails>
+          </PrivetRoutes>
+        ),
       },
       {
         path: '/my-bids',
-        element: <MyBids></MyBids>,
+        element: (
+          <PrivetRoutes>
+            <MyBids></MyBids>
+          </PrivetRoutes>
+        ),
       },
       {
         path: '/my-posted-jobs',
-        element: <MyPostedJobs></MyPostedJobs>,
+        element: (
+          <PrivetRoutes>
+            <MyPostedJobs></MyPostedJobs>
+          </PrivetRoutes>
+        ),
       },
       {
-        path: '/bid-requests/:email',
-        element: <BidRequests></BidRequests>,
+        path: '/bid-requests',
+        element: (
+          <PrivetRoutes>
+            <BidRequests></BidRequests>
+          </PrivetRoutes>
+        ),
       },
     ],
   },

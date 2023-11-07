@@ -12,7 +12,7 @@ const MyBids = () => {
   } = useQuery({
     queryKey: ['myBids', user],
     queryFn: async () => {
-      const res = await axios.get(`/bidedJobs/email@eee.com`);
+      const res = await axios.get(`/bidedJobs/${user?.email}`);
       return res;
     },
   });
@@ -29,7 +29,11 @@ const MyBids = () => {
   if (isLoading) {
     return (
       <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
-        Loading...
+        Loading... <br />
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
       </div>
     );
   }
