@@ -1,17 +1,39 @@
-import { useState } from 'react';
+import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
-import { useEffect } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const MyPostedJobs = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
-  const [myJobs, setMyJobs] = useState([]);
   const email = user?.email;
-  useEffect(() => {
-    axios.get(`/jobs/${email}`).then((res) => setMyJobs(res?.data));
-  }, [axios, email]);
-  console.log(myJobs);
+
+  const queryClient = useQueryClient();
+
+  const { data: myJobs } = useQuery({
+    queryKey: ['myJobs'],
+    queryFn: async () => {
+      const res = await axios.get(`/jobs/${email}`);
+      return res;
+    },
+  });
+
+  const { mutate } = useMutation({
+    mutationKey: ['myJobs'],
+    mutationFn: (id) => {
+      return axios.delete(`/jobs/${id}`);
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: 'Success!',
+        text: 'Product Successfully Added',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      });
+      queryClient.invalidateQueries({ queryKey: ['myJobs'] });
+    },
+  });
+
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <div className="-mx-4 flex flex-wrap">
@@ -27,7 +49,7 @@ const MyPostedJobs = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 container mx-auto">
-        {myJobs?.map((job) => (
+        {myJobs?.data?.map((job) => (
           <div key={job?._id} className="card bg-neutral text-neutral-content ">
             <div className="card-body items-center text-center">
               <h2 className="card-title">{job?.jobTitle}</h2>
@@ -42,7 +64,12 @@ const MyPostedJobs = () => {
               <p>{job?.description.slice(0, 59)}...</p>
               <div className="card-actions justify-end">
                 <button className="btn btn-primary">Update</button>
-                <button className="btn btn-danger">Delete</button>
+                <button
+                  onClick={() => mutate(job?._id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
