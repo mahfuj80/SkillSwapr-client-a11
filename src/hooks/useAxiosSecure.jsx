@@ -23,7 +23,7 @@ const useAxiosSecure = () => {
               navigate('/login');
             })
             .catch((error) => console.log(error));
-          console.log('logout the User');
+          console.log('from interceptors logout the User');
         }
       }
     );

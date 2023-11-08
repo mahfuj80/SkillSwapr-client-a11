@@ -7,7 +7,7 @@ const AddJobs = () => {
   const navigate = useNavigate();
   const axios = useAxiosSecure();
   const { user } = useAuth();
-  console.log(user);
+
   const handleAddJob = (e) => {
     e.preventDefault();
 

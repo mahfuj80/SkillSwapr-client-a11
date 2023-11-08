@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentUser?.email || user?.email;
       const loggedUser = { email: userEmail };
       setUser(currentUser);
-      console.log('current user', currentUser);
+      console.log('current user from onAuthStateChanged', currentUser);
       setLoading(false);
 
       // if user exists then issue a token

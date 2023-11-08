@@ -11,12 +11,10 @@ const UpdateJob = () => {
   const id = useParams();
   const [previousJob, setPreviousJob] = useState([]);
   const axios = useAxiosSecure();
-  console.log(id);
 
   useEffect(() => {
     axios.get(`/jobDetails/${id?.id}`).then((res) => setPreviousJob(res?.data));
   }, [axios, id]);
-  console.log(previousJob);
 
   const handleUpdateJob = (e) => {
     e.preventDefault();
@@ -41,7 +39,6 @@ const UpdateJob = () => {
       .put(`/update-job/${id.id}`, updatedValue)
 
       .then((res) => {
-        console.log(res.data);
         if (res.data?.modifiedCount > 0) {
           Swal.fire({
             title: 'Success!',
