@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Settings = () => {
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-300 container mx-auto">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">

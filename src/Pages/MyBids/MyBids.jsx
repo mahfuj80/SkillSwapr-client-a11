@@ -103,7 +103,7 @@ const MyBids = () => {
                 <td>{job?.buyerDeadline}</td>
                 <td>
                   {job?.status
-                    ? job?.status === 'accepted'
+                    ? job?.status === 'accept'
                       ? 'In Progress'
                       : job?.status === 'canceled'
                       ? 'Canceled'
@@ -111,7 +111,7 @@ const MyBids = () => {
                     : 'Pending'}
                 </td>
                 <th>
-                  {job?.status === 'accepted' ? (
+                  {job?.status === 'accept' ? (
                     <button className="btn btn-ghost btn-sm">Complete</button>
                   ) : (
                     ''

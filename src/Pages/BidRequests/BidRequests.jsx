@@ -1,22 +1,47 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
 
 const BidRequests = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
+  const [status, setStatus] = useState(true);
+
   const {
     isError,
     isLoading,
     data: myBids,
   } = useQuery({
-    queryKey: ['myBids', user],
+    queryKey: ['myBids', user, status],
     queryFn: async () => {
       const res = await axios.get(`/requestedJobs/${user?.email}`);
       return res;
     },
   });
-  // console.log(myBids);
+
+  const { mutate } = useMutation({
+    mutationKey: ['myJobs'],
+    mutationFn: async ({ id, status }) => {
+      const res = await axios.patch(`/updateBidedJobs/${id}`, { status });
+      return res;
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: 'Success!',
+        text: 'Job Successfully Accepted',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      });
+      setStatus(!status);
+    },
+  });
+
+  const handleStatus = (id, status) => {
+    mutate({ id, status });
+  };
+
   if (!user?.email) {
     return (
       <div className="w-fit text-center mx-auto text-4xl font-bold py-36 ">
@@ -103,7 +128,7 @@ const BidRequests = () => {
                 <td>{job?.bidderDeadline}</td>
                 <td>
                   {job?.status
-                    ? job?.status === 'accepted'
+                    ? job?.status === 'accept'
                       ? 'In Progress'
                       : job?.status === 'canceled'
                       ? 'Canceled'
@@ -111,10 +136,27 @@ const BidRequests = () => {
                     : 'Pending'}
                 </td>
                 <th>
-                  {job?.status === 'accepted' ? (
-                    <button className="btn btn-ghost btn-sm">Complete</button>
+                  {job?.status ? (
+                    job?.status === 'accept' ? (
+                      'progressbar'
+                    ) : (
+                      ''
+                    )
                   ) : (
-                    ''
+                    <div>
+                      <button
+                        onClick={() => handleStatus(job?._id, 'accept')}
+                        className="btn btn-sm mr-4"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleStatus(job?._id, 'accept')}
+                        className="btn btn-sm"
+                      >
+                        Reject
+                      </button>
+                    </div>
                   )}
                 </th>
               </tr>
