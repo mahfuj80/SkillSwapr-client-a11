@@ -1,5 +1,11 @@
 #
 
+---
+
+# SkillSwapr
+
+---
+
 A full-stack website for job seekers and employers, providing a platform to find and post job listings. Users can sign in using Gmail and GitHub accounts, and JWT tokens are used for user verification.
 
 ## Table of Contents
