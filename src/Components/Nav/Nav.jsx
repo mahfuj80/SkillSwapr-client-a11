@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import DarkWhite from '../DarkAndWhiteToggle/DarkWhite';
 const Nav = () => {
   const { logOut, user } = useAuth();
   const navigate = useNavigate();
@@ -81,6 +82,9 @@ const Nav = () => {
           </Link>
         </div>
         <div className="navbar-end">
+          <div className="mr-4 lg:mr-5">
+            <DarkWhite></DarkWhite>
+          </div>
           {user ? undefined : (
             <ul className="flex gap-3">{loginAndLogOutButton}</ul>
           )}
