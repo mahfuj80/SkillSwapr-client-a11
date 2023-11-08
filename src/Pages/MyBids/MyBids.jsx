@@ -1,21 +1,47 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const MyBids = () => {
   const axios = useAxiosSecure();
   const { user } = useAuth();
+  const [status, setStatus] = useState(true);
+
   const {
     isError,
     isLoading,
     data: myBids,
   } = useQuery({
-    queryKey: ['myBids', user],
+    queryKey: ['myBids', user, status],
     queryFn: async () => {
       const res = await axios.get(`/bidedJobs/${user?.email}`);
       return res;
     },
   });
+
+  const { mutate } = useMutation({
+    mutationKey: ['myJobs'],
+    mutationFn: async ({ id, status }) => {
+      const res = await axios.patch(`/updateBidedJobs/${id}`, { status });
+      return res;
+    },
+    onSuccess: () => {
+      Swal.fire({
+        title: 'Success!',
+        text: 'Job Successfully Accepted',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      });
+      setStatus(!status);
+    },
+  });
+
+  const handleStatus = (id, status) => {
+    mutate({ id, status });
+  };
+
   // console.log(myBids);
   if (!user?.email) {
     return (
@@ -102,17 +128,34 @@ const MyBids = () => {
                 <td>{job?.buyerEmail}</td>
                 <td>{job?.buyerDeadline}</td>
                 <td>
-                  {job?.status
-                    ? job?.status === 'accept'
-                      ? 'In Progress'
-                      : job?.status === 'canceled'
-                      ? 'Canceled'
-                      : 'Pending'
-                    : 'Pending'}
+                  <span
+                    className={
+                      job?.status === 'canceled'
+                        ? 'bg-red-600 rounded-lg py-1 px-1 text-white'
+                        : job?.status === 'accept'
+                        ? 'bg-primary rounded-lg py-1 px-1 text-white'
+                        : job?.status === 'complete'
+                        ? 'bg-green-500 rounded-lg py-1 px-1 text-white'
+                        : 'bg-green-300 rounded-lg py-1 px-1 text-white'
+                    }
+                  >
+                    {job?.status
+                      ? job?.status === 'accept'
+                        ? 'In Progress'
+                        : job?.status === 'canceled'
+                        ? 'Canceled'
+                        : 'Complete'
+                      : 'Pending'}
+                  </span>
                 </td>
                 <th>
                   {job?.status === 'accept' ? (
-                    <button className="btn btn-ghost btn-sm">Complete</button>
+                    <button
+                      onClick={() => handleStatus(job?._id, 'complete')}
+                      className="btn btn-sm"
+                    >
+                      Complete
+                    </button>
                   ) : (
                     ''
                   )}

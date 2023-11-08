@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import MyProgressBar from '../../Components/ProgressBar/MyProgressBar';
 
 const BidRequests = () => {
   const axios = useAxiosSecure();
@@ -127,18 +128,30 @@ const BidRequests = () => {
                 <td>{job?.biddersEmail}</td>
                 <td>{job?.bidderDeadline}</td>
                 <td>
-                  {job?.status
-                    ? job?.status === 'accept'
-                      ? 'In Progress'
-                      : job?.status === 'canceled'
-                      ? 'Canceled'
-                      : 'Pending'
-                    : 'Pending'}
+                  <span
+                    className={
+                      job?.status === 'canceled'
+                        ? 'bg-red-600 rounded-lg py-1 px-1 text-white'
+                        : job?.status === 'accept'
+                        ? 'bg-primary rounded-lg py-1 px-1 text-white'
+                        : job?.status === 'complete'
+                        ? 'bg-green-500 rounded-lg py-1 px-1 text-white'
+                        : 'bg-green-300 rounded-lg py-1 px-1 text-white'
+                    }
+                  >
+                    {job?.status
+                      ? job?.status === 'accept'
+                        ? 'In Progress'
+                        : job?.status === 'canceled'
+                        ? 'Canceled'
+                        : 'Complete'
+                      : 'Pending'}
+                  </span>
                 </td>
                 <th>
                   {job?.status ? (
                     job?.status === 'accept' ? (
-                      'progressbar'
+                      <MyProgressBar></MyProgressBar>
                     ) : (
                       ''
                     )
@@ -151,7 +164,7 @@ const BidRequests = () => {
                         Accept
                       </button>
                       <button
-                        onClick={() => handleStatus(job?._id, 'accept')}
+                        onClick={() => handleStatus(job?._id, 'canceled')}
                         className="btn btn-sm"
                       >
                         Reject
