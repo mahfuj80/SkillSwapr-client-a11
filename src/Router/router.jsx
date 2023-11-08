@@ -11,6 +11,7 @@ import MyPostedJobs from '../Pages/MyPostedJobs/MyPostedJobs';
 import BidRequests from '../Pages/BidRequests/BidRequests';
 import UpdateJob from '../Pages/UpdateJob/UpdateJob';
 import PrivetRoutes from './PrivetRoutes';
+import Settings from '../Pages/Settings/Setings';
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoutes>
             <BidRequests></BidRequests>
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: '/settings',
+        element: (
+          <PrivetRoutes>
+            <Settings></Settings>
           </PrivetRoutes>
         ),
       },
