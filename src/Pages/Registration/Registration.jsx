@@ -82,7 +82,7 @@ const Registration = () => {
   return (
     <div className="container mx-auto">
       <Helmet>
-        <title>Skill Swapr | Register</title>
+        <title>SkillSwapr | Register</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-100 md:py-20 py-10">
         <div className="hero-content flex-col lg:flex-row-reverse">

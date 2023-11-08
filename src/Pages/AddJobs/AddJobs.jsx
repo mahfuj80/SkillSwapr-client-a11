@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const AddJobs = () => {
   const navigate = useNavigate();
@@ -56,6 +57,9 @@ const AddJobs = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Skill Swapr | Add Jobs</title>
+      </Helmet>
       <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-gray-100 container mx-auto rounded-lg ">
         <div className="container mx-auto">
           <p className="text-4xl text-center font-bold mb-16">Add Your Job</p>

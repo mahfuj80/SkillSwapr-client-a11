@@ -76,7 +76,7 @@ const MyBids = () => {
   return (
     <section className="container mx-auto">
       <Helmet>
-        <title>Skill Swapr | Your Bids</title>
+        <title>SkillSwapr | Your Bids</title>
       </Helmet>
       <div className=" pt-10 mx-4 flex flex-wrap">
         <div className="w-full px-4">

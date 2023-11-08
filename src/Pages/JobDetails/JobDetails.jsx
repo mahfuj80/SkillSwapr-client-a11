@@ -79,7 +79,7 @@ const JobDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>Skill Swapr | Bid Request</title>
+        <title>SkillSwapr | Bid Request</title>
       </Helmet>
       <div className="hero py-10 md:py-16 container mx-auto bg-base-300 rounded-lg">
         <div className="hero-content text-center">

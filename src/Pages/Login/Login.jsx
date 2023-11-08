@@ -67,7 +67,7 @@ const Login = () => {
   return (
     <div className="container mx-auto">
       <Helmet>
-        <title>Skill Swapr | Login</title>
+        <title>SkillSwapr | Login</title>
       </Helmet>
       <div className="hero min-h-screen bg-base-100 lg:py-20 py-10">
         <div className="hero-content flex-col lg:flex-row-reverse">

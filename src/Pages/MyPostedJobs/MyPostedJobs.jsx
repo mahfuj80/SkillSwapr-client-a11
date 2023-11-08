@@ -110,7 +110,7 @@ const MyPostedJobs = () => {
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
       <Helmet>
-        <title>Skill Swapr | Your Posted Jobs</title>
+        <title>SkillSwapr | Your Posted Jobs</title>
       </Helmet>
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4">
