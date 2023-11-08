@@ -4,6 +4,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import MyProgressBar from '../../Components/ProgressBar/MyProgressBar';
+import { Helmet } from 'react-helmet-async';
 
 const BidRequests = () => {
   const axios = useAxiosSecure();
@@ -74,6 +75,9 @@ const BidRequests = () => {
 
   return (
     <section className="container mx-auto">
+      <Helmet>
+        <title>Skill Swapr | Bid Request</title>
+      </Helmet>
       <div className=" pt-10 mx-4 flex flex-wrap">
         <div className="w-full px-4">
           <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">

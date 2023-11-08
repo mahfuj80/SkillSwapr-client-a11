@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import errorImage from '../../assets/images/404.gif';
+import { Helmet } from 'react-helmet-async';
 
 const Error = () => {
   return (
     <div>
+      <Helmet>
+        <title>Skill Swapr | Error</title>
+      </Helmet>
       <div className="h-full py-10 w-full flex items-center justify-center bg-slate-100">
         <div className="text-center w-fit mx-auto bg-[#13192a] p-10 rounded-lg space-y-3">
           <img

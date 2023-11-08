@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyBids = () => {
   const axios = useAxiosSecure();
@@ -74,6 +75,9 @@ const MyBids = () => {
 
   return (
     <section className="container mx-auto">
+      <Helmet>
+        <title>Skill Swapr | Your Bids</title>
+      </Helmet>
       <div className=" pt-10 mx-4 flex flex-wrap">
         <div className="w-full px-4">
           <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">

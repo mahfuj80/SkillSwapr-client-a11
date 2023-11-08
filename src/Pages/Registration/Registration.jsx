@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/Firebase';
 import logo from '../../assets/images/logo.png';
+import { Helmet } from 'react-helmet-async';
 
 const Registration = () => {
   const { user, createUser, updateProfile } = useAuth();
@@ -80,6 +81,9 @@ const Registration = () => {
   };
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>Skill Swapr | Register</title>
+      </Helmet>
       <div className="hero min-h-screen bg-base-100 md:py-20 py-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

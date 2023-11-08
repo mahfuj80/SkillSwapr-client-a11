@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MyPostedJobs = () => {
   const axios = useAxiosSecure();
@@ -85,15 +86,32 @@ const MyPostedJobs = () => {
     );
   }
 
-  if (isLoading) {
+  if (myJobs?.data?.length < 1) {
     return (
-      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
-        No jobs available
-      </div>
+      <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
+        <div className="-mx-4 flex flex-wrap">
+          <div className="w-full px-4">
+            <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
+              <span className="mb-2 block text-lg font-semibold text-primary">
+                Your JOBS
+              </span>
+              <h2 className="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]">
+                Jobs That You Posted
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+          You do not post any jobs
+        </div>
+      </section>
     );
   }
   return (
     <section className="pt-20 lg:pt-[50px] lg:pb-[90px] px-8 md:px-14">
+      <Helmet>
+        <title>Skill Swapr | Your Posted Jobs</title>
+      </Helmet>
       <div className="-mx-4 flex flex-wrap">
         <div className="w-full px-4">
           <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">

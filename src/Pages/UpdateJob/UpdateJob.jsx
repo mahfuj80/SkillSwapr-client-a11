@@ -4,6 +4,7 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateJob = () => {
   const navigate = useNavigate();
@@ -68,6 +69,9 @@ const UpdateJob = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>SkillSwapr | Update Job</title>
+      </Helmet>
       <section className="pt-20 pb-10 lg:pt-[120px] lg:pb-20 bg-gray-100 container mx-auto rounded-lg ">
         <div className="container mx-auto">
           <p className="text-4xl text-center font-bold mb-16">Add Your Job</p>

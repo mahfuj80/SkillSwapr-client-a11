@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const JobDetails = () => {
   const { user } = useAuth();
@@ -77,6 +78,9 @@ const JobDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Skill Swapr | Bid Request</title>
+      </Helmet>
       <div className="hero py-10 md:py-16 container mx-auto bg-base-300 rounded-lg">
         <div className="hero-content text-center">
           <div className="max-w-md">
