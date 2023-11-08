@@ -3,11 +3,20 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import logo from '../../assets/images/logo.png';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import { useEffect } from 'react';
 
 const Login = () => {
   const { googleSignIn, githubSignIn, loginUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate(location?.state ? location.state : '/');
+      return;
+    }
+  }, [navigate, user, location]);
 
   const handleLogin = (e) => {
     e.preventDefault();

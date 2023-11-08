@@ -35,15 +35,11 @@ const Nav = () => {
 
   const loginAndLogOutButton = (
     <>
-      <li className="font-semibold btn">
-        <button>
-          <NavLink to={'/login'}>Login</NavLink>
-        </button>
+      <li className="font-semibold">
+        <NavLink to={'/login'}>Login</NavLink>
       </li>
-      <li className="font-semibold btn">
-        <button>
-          <NavLink to={'/register'}>Sign Up</NavLink>
-        </button>
+      <li className="font-semibold">
+        <NavLink to={'/register'}>Sign Up</NavLink>
       </li>
     </>
   );
@@ -86,7 +82,9 @@ const Nav = () => {
             <DarkWhite></DarkWhite>
           </div>
           {user ? undefined : (
-            <ul className="flex gap-3">{loginAndLogOutButton}</ul>
+            <ul className="menu menu-sm menu-horizontal">
+              {loginAndLogOutButton}
+            </ul>
           )}
           {user && (
             <div className="dropdown dropdown-end">

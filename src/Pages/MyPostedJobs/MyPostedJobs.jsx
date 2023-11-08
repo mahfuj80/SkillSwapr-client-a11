@@ -11,7 +11,6 @@ const MyPostedJobs = () => {
   const queryClient = useQueryClient();
   const {
     isError,
-    error,
     isLoading,
     data: myJobs,
   } = useQuery({
@@ -69,7 +68,11 @@ const MyPostedJobs = () => {
   if (isLoading) {
     return (
       <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
-        Loading...
+        Loading... <br />
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
+        <span className="loading loading-dots loading-xl"></span>
       </div>
     );
   }
@@ -77,7 +80,15 @@ const MyPostedJobs = () => {
   if (isError) {
     return (
       <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
-        Error: {error.message}
+        Error: {'Something Went Wrong'}
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="w-fit mx-auto text-4xl text-center font-bold py-36 ">
+        No jobs available
       </div>
     );
   }
