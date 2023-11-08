@@ -1,7 +1,7 @@
-import About from './About';
+import About from './About/About';
 import Faq from './Faq/Faq';
 import Jobs from './Jobs/Jobs';
-import Slider from './Slider';
+import Slider from './Slider/Slider';
 
 const Home = () => {
   return (

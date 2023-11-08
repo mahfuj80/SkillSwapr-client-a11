@@ -3,7 +3,7 @@ import useAuth from '../../hooks/useAuth';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 import auth from '../../Firebase/Firebase';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/logo.png';
 
 const Registration = () => {
   const { user, createUser, updateProfile } = useAuth();

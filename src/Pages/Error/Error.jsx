@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import errorImage from '../../assets/404.gif';
+import errorImage from '../../assets/images/404.gif';
 
 const Error = () => {
   return (

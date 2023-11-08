@@ -1,6 +1,6 @@
-import img1 from '../../assets/image-1.jpg';
-import img2 from '../../assets/image-2.jpg';
-import img3 from '../../assets/image-3.jpg';
+import img1 from '../../assets/images/image-1.jpg';
+import img2 from '../../assets/images/image-2.jpg';
+import img3 from '../../assets/images/image-3.jpg';
 const About = () => {
   return (
     <section className="overflow-hidden pt-10 pb-12 lg:pt-[50px] lg:pb-[90px]">

@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/logo.png';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import DarkWhite from '../DarkAndWhiteToggle/DarkWhite';
