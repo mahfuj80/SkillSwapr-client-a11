@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/logo.png';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 

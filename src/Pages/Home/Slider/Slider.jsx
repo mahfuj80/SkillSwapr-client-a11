@@ -1,8 +1,8 @@
 import { Carousel } from 'react-carousel-minimal';
-import img1 from '../../assets/images/slider1.jpg';
-import img2 from '../../assets/images/slider2.jpg';
-import img3 from '../../assets/images/slider3.jpg';
-import img4 from '../../assets/images/slider4.jpg';
+import img1 from '../../../assets/images/slider1.jpg';
+import img2 from '../../../assets/images/slider2.jpg';
+import img3 from '../../../assets/images/slider3.jpg';
+import img4 from '../../../assets/images/slider4.jpg';
 
 const Slider = () => {
   const data = [

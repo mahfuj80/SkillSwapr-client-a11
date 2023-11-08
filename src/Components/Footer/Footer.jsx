@@ -1,4 +1,4 @@
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/logo.png';
 const Footer = () => {
   return (
     <footer className="relative bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-[#1d232a]">
