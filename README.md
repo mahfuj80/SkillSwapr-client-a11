@@ -20,7 +20,7 @@ A full-stack website for job seekers and employers, providing a platform to find
 
 ## Demo
 
-Provide a link to a live demo of your website if available.
+## Live Link: https://skillswapr-a11.web.app/
 
 ## Features
 
@@ -105,7 +105,5 @@ This project is licensed under the [copyring@c 2023] - see the LICENSE.md file f
 ---
 
 # Thanks
-
-## Live Link: https://skillswapr-a11.web.app/
 
 ---
